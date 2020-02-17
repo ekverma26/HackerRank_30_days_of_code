@@ -1,0 +1,89 @@
+Objective
+Today, we're delving into Inheritance. Check out the attached tutorial for learning materials and an instructional video!
+
+Task
+You are given two classes, Person and Student, where Person is the base class and Student is the derived class. Completed code for Person and a declaration for Student are provided for you in the editor. Observe that Student inherits all the properties of Person.
+
+Complete the Student class by writing the following:
+
+A Student class constructor, which has  parameters:
+A string, .
+A string, .
+An integer, .
+An integer array (or vector) of test scores, .
+A char calculate() method that calculates a Student object's average and returns the grade character representative of their calculated average:
+Grading.png
+
+Input Format
+
+The locked stub code in your editor calls your Student class constructor and passes it the necessary arguments. It also calls the calculate method (which takes no arguments).
+
+You are not responsible for reading the following input from stdin:
+The first line contains , , and , respectively. The second line contains the number of test scores. The third line of space-separated integers describes .
+
+Constraints
+
+Output Format
+
+This is handled by the locked stub code in your editor. Your output will be correct if your Student class constructor and calculate() method are properly implemented.
+
+Sample Input
+
+Heraldo Memelli 8135627
+2
+100 80
+Sample Output
+
+ Name: Memelli, Heraldo
+ ID: 8135627
+ Grade: O
+ 
+ CODE:
+ class Person:
+	def __init__(self, firstName, lastName, idNumber):
+		self.firstName = firstName
+		self.lastName = lastName
+		self.idNumber = idNumber
+	def printPerson(self):
+		print("Name:", self.lastName + ",", self.firstName)
+		print("ID:", self.idNumber)
+
+class Student(Person):
+    
+    def __init__(self,firstname,lastname,idNum, scores):
+        Person.__init__(self, firstName, lastName, idNum)
+        self.s = scores
+
+    #   Function Name: calculate
+    #   Return: A character denoting the grade.
+    #
+    # Write your function here
+    def calculate(self):
+        a=0
+        for i in range(0,len(self.s)):
+            a=a+self.s[i]
+        a=a/len(self.s)
+
+        if 90<=a and a<=100:
+            return 'O'
+        elif 80<=a and a<90:
+            return 'E'
+        elif 70<=a and a<80:
+            return 'A'
+        elif 55<=a and a<70:
+            return 'P'
+        elif 40<=a and a<55:
+            return 'D'
+        elif a<40:
+            return 'T'
+
+
+line = input().split()
+firstName = line[0]
+lastName = line[1]
+idNum = line[2]
+numScores = int(input()) # not needed for Python
+scores = list( map(int, input().split()) )
+s = Student(firstName, lastName, idNum, scores)
+s.printPerson()
+print("Grade:", s.calculate())
